@@ -16,3 +16,5 @@ RUN apt install -y libreoffice liblibreoffice-java
 RUN apt-get install -y xapian-omega ruby-xapian libxapian-dev poppler-utils antiword  unzip catdoc libwpd-tools \
 libwps-tools gzip unrtf catdvi djview djview3 uuid uuid-dev xz-utils libemail-outlook-message-perl
 
+# Redmine konteynerinden veritabanında değişiklikler yapmak için mysql istemcisini kuruyoruz.
+RUN apt-get install -y default-mysql-client

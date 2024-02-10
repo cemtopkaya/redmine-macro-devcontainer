@@ -1,3 +1,18 @@
+# Redmine Konteynerlerinin Yapısı
+
+Mysql günlükleri toplansın diye `/workspace/volume/mysql/mysqld.cnf` dosyasında aşağıdaki ayarları yaptım:
+
+```text
+general_log_file = /var/log/mysql/mysql-query.log
+general_log      = 1
+```
+
+Günlük dosyasına yazılan tüm MYSQL komutlarını görebilip hem Redmine işleyişi hem eklenti/makro geliştirmeleri Mysql tarafında ayrıntılı olarak görülebilir
+
+```shell
+docker exec -it -w /var/log/mysql/ test-plugin-redmine_mysql tail -f mysql-query.log
+```
+
 # Redmine Eklentisi Geliştirmek
 
 Eklentiyi `/usr/src/redmine/plugins` dizininde, `git clone https://<eklentinin kod havuzu>.git` komutu ile çekebilir, `bundle exec rake redmine:plugins:migrate NAME=my_plugin RAILS_ENV=production` komutuyla veritabanı değişimlerini oluşturabilirsiniz.

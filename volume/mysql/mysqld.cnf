@@ -31,6 +31,7 @@ pid-file        = /var/run/mysqld/mysqld.pid
 socket          = /var/run/mysqld/mysqld.sock
 datadir         = /var/lib/mysql
 #log-error      = /var/log/mysql/error.log
+
 # By default we only accept connections from localhost
 bind-address    = 0.0.0.0
 # Disabling symbolic-links is recommended to prevent assorted security risks
@@ -38,3 +39,8 @@ symbolic-links=0
 character-set-server = utf8
 collation-server = utf8_unicode_ci
 skip-character-set-client-handshake
+
+# Günlük kayıtlarını açmak için aşağıdaki ayarı açıp docker ile günlükleri takip edebiliriz
+# docker exec -it -w /var/log/mysql/ test-plugin-redmine_mysql tail -f mysql-query.log
+general_log_file = /var/log/mysql/mysql-query.log
+general_log      = 1
