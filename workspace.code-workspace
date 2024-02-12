@@ -41,8 +41,8 @@
 				"cwd": "${workspaceFolder:redmine_plugins_dizini}",
 				"args": [
 					"server",
-					"-p=3001",
-					"-P=3001",
+					"-p=3000",
+					"-P=3000",
 				]
 			},
 			{

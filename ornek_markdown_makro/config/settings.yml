@@ -1,0 +1,17 @@
+# config/settings.yml
+default:
+  plugin_redmine_markdown_macro:
+    change_request_form: |
+      # Değişim Talep Formu
+      Bu değişim talep formudur.
+      Lütfen aşağıdaki bilgileri doldurun:
+      - İsim:
+      - E-posta:
+      - Değişiklik Açıklaması:
+    feature_request: |
+      # Yeni Özellik İsteği
+      Bu yeni özellik isteğidir.
+      Lütfen aşağıdaki bilgileri belirtin:
+      - Özellik Açıklaması:
+      - Öncelik:
+      - Zorluk:

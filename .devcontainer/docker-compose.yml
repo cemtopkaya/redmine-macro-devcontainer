@@ -11,6 +11,7 @@ networks:
 
 services:
   redmine:
+    # command: "/docker-entrypoint.sh rails server -b 0.0.0.0"
     container_name: test-plugin-redmine
     build:
       dockerfile: Dockerfile
@@ -18,7 +19,28 @@ services:
     pull_policy: if_not_present
     image: redmine:5.0.2-custom
     restart: always
-    # entrypoint: "tail -f /dev/null && ./docker-entrypoint.sh rails server -b 0.0.0.0"
+    # entrypoint:
+    #   - sh
+    #   - -c
+    #   - |
+    #     exec tail -f /dev/null &
+    #     exec "$@"
+
+    # entrypoint: "tail -f /dev/null & exec ./docker-entrypoint.sh rails server -b 0.0.0.0"
+    # entrypoint: 
+    #   - "sh"
+    #   - "-c"
+    #   - "exec tail -f /dev/null & exec \"$@\""
+    #   - "/docker-entrypoint.sh"
+    #   - "rails"
+    #   - "server"
+    #   - "-b"
+    #   - "0.0.0.0"
+    # entrypoint: 
+    #   - "sh"
+    #   - "-c"
+    #   - "exec tail -f /dev/null & exec \"$@\""
+    #   - "-"
 
     networks:
       test-network-redmine_plugin:

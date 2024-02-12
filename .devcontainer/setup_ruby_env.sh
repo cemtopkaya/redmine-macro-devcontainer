@@ -149,7 +149,7 @@ create_symlink_of_plugin(){
     # "/workspace" dizini içinde "./ornek_eklenti" ismindeki klasörü "/usr/src/redmine/plugins" dizininin altına soft link ile bağlıyoruz
     # launch.json içinde `"program": "/usr/src/redmine/bin/rails",` ile kodumuzu başlatabiliyoruz.
     # Farklı isimlerde eklentiler için docker-compose.yml içinde mount edilmi "/workspace/volume/redmine/redmine-plugins" dizini içinde yaratarak kodlayabilirsiniz
-    ln -s -v /workspace/ornek_eklenti /usr/src/redmine/plugins/ornek_eklenti  && echo "link created" || echo "link creation failed"
+    ln -s -v /workspace/ornek_markdown_makro /usr/src/redmine/plugins/ornek_markdown_makro  && echo "link created" || echo "link creation failed"
 }
 
 echo -e "\n\n----------------------------- CREATE SYMBOLIC LINK FOR REDMINE PLUGIN ---------------------------------"
