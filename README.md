@@ -1,3 +1,15 @@
+# Örnek Markdown Makro Eklentisi
+
+Wiki sayfasında yeni bir içerik oluşturulurken aşağıdaki metin eklenip ön izleme sekmesine geçildiğinde çalıştığı görülür.
+
+```markdown
+# Wiki
+
+{{custom_markdown(change_request_form)}}
+```
+
+![alt text](.vscode/images/markdown_makro_cikti_1.png)
+
 # Redmine Konteynerlerinin Yapısı
 
 Mysql günlükleri toplansın diye `/workspace/volume/mysql/mysqld.cnf` dosyasında aşağıdaki ayarları yaptım:
@@ -16,8 +28,6 @@ docker exec -it -w /var/log/mysql/ test-plugin-redmine_mysql tail -f mysql-query
 # Redmine Eklentisi Geliştirmek
 
 Eklentiyi `/usr/src/redmine/plugins` dizininde, `git clone https://<eklentinin kod havuzu>.git` komutu ile çekebilir, `bundle exec rake redmine:plugins:migrate NAME=my_plugin RAILS_ENV=production` komutuyla veritabanı değişimlerini oluşturabilirsiniz.
-
-![Alt text](image.png)
 
 Redmine docker içinde aşağıdaki `docker-compose.yml` ile çalışıyor ve içine VS Code ile debug için bir paket `gem install ruby-debug-ide` ve eklenti kuruyoruz. Bunu yapması için `.devcontainer/devcontainer.json` içinde aşağıdaki satır kullanılıyor:
 
