@@ -10,6 +10,8 @@ MYSQL_PASSWORD=admin
 
 # Veritabanı adı
 DATABASE="redmine"
+# updated_on değeri şimdi olsun
+CURRENT_TIME=$(date +"%Y-%m-%d %H:%M:%S")
 
 # MySQL sunucusuna bağlanma denemesi yapacak fonksiyon
 check_mysql_connection() {
@@ -53,8 +55,6 @@ check_redmine_isup;
 
 aktivateRestAPI() {
     # Redmine -> Ayarlar -> API sekmesinde rest_api_enabled ve jsonp_enabled aktif edilecek
-    # updated_on değeri şimdi olsun
-    CURRENT_TIME=$(date +"%Y-%m-%d %H:%M:%S")
 
     # REST_API name,value değerleri
     REST_API_NAME="rest_api_enabled"
@@ -161,7 +161,7 @@ enable_visual_editor_tab_for_switch(){
     sql="UPDATE settings
 SET 
     value='--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nvisual_editor_mode_switch_tab: \'1\'\n',
-    updated_on = '2024-02-13 11:39:58'
+    updated_on = '${CURRENT_TIME}'
 WHERE 
     name='plugin_redmine_wysiwyg_editor'"
 
