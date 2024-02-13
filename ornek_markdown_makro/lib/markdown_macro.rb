@@ -31,13 +31,12 @@ module MarkdownMacro
           markdown_text = "Geçersiz makro parametresi: #{args[0]}"
         end
         
-        return markdown_text
+        # return markdown_text
         # Markdown içeriğini HTML'e dönüştür
-        html = Redmine::WikiFormatting.to_html(markdown_text, obj.project, :textile)
+        puts "Project: #{@project}"
+        puts "markdown_text: #{markdown_text}"
+        html = Redmine::WikiFormatting.to_html(:markdown, markdown_text)
         return html.html_safe
-
-        # html = Redmine::WikiFormatting::Markdown.new(markdown_text).to_html
-        # return html.html_safe
       end
     end
   end

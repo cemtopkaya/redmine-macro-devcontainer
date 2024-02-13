@@ -156,3 +156,46 @@ echo -e "\n\n----------------------------- CREATE SYMBOLIC LINK FOR REDMINE PLUG
 create_symlink_of_plugin;
 
 # ------------------------------------------------------------------------------------------------------------
+
+enable_visual_editor_tab_for_switch(){
+    sql="UPDATE `settings`
+SET 
+    `value` = '--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nvisual_editor_mode_switch_tab: \'1\'\n',
+    `updated_on` = '2024-02-13 11:39:58'
+WHERE 
+    `id` = (
+        SELECT `settings`.`id`
+        FROM `settings`
+        WHERE `settings`.`name` = 'plugin_redmine_wysiwyg_editor'
+        ORDER BY `settings`.`id` DESC
+        LIMIT 1
+    );"
+
+    mysql -h $MYSQL_HOST -u "${MYSQL_USER}" -p"${MYSQL_PASSWORD}" "${DATABASE}" -e "${sql};"
+}
+
+echo -e "\n\n----------------------------- ENABLE VISUAL EDITOR AS TAB ---------------------------------"
+enable_visual_editor_tab_for_switch;
+
+# ------------------------------------------------------------------------------------------------------------
+
+enable_visual_editor_module_for_new_project(){
+    sql="INSERT INTO `enabled_modules` (`project_id`, `name`)
+SELECT id, 'visual_editor'
+FROM `projects`
+WHERE `projects`.`identifier` = 'yeni_proje'
+AND NOT EXISTS (
+    SELECT 1
+    FROM `enabled_modules`
+    WHERE `enabled_modules`.`project_id` = (SELECT id FROM `projects` WHERE `projects`.`identifier` = 'yeni_proje' LIMIT 1)
+    AND `enabled_modules`.`name` = 'visual_editor'
+)
+LIMIT 1;"
+
+    mysql -h $MYSQL_HOST -u "${MYSQL_USER}" -p"${MYSQL_PASSWORD}" "${DATABASE}" -e "${sql};"
+}
+
+echo -e "\n\n----------------------------- ENABLE Visual Editor MODULE FOR NEW PROJECT ---------------------------------"
+enable_visual_editor_module_for_new_project;
+
+# ------------------------------------------------------------------------------------------------------------
